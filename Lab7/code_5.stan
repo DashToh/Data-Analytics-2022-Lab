@@ -12,7 +12,7 @@ parameters {
 
 transformed parameters {
    vector [N] mu;
-   mu = X * beta;
+   mu = X*beta;
 }
 
 model {
@@ -20,10 +20,10 @@ model {
 }
 
 generated quantities {
-   vector[N] log_lik;
-   array[N] real y_hat;
+   vector [N] log_lik;
+   array [N] real y_hat;
    for (j in 1:N) {
-      log_lik[j] = normal_lpdf(y[j] | mu[j], sigma);
-      y_hat[j] = normal_rng(mu[j], sigma);
+        log_lik[j] = normal_lpdf(y[j] | mu[j], sigma);
+        y_hat[j] = normal_rng(mu[j],sigma);
    }
 }
