@@ -2,10 +2,14 @@ data {
    int<lower=0> N;
    int<lower=0,upper=1> y[N];
  }
+
  parameters {
    real<lower=0,upper=1> theta;
  }
+
  model {
-   theta ~ normal(0.5,0.1);  // uniform prior on interval 0,1
-   y ~ bernoulli(theta);
+   int n = 4;
+   int T = 7;
+   theta ~ beta(1,1);
+   y ~ binomial_cdf( n | T, theta);
  }
